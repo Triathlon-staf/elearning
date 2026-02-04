@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Era Kemerdekaan Indonesia</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --red:#b71c1c;
+    --darkred:#7f0000;
+    --gold:#c9a227;
+    --bg:#fff5f5;
+}
+
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(180deg,#fff,#ffecec);
+    color:#333;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,var(--darkred),var(--red));
+    color:white;
+    text-align:center;
+    padding:60px 20px;
+}
+
+header h1{
+    margin:0;
+    font-size:2.6rem;
+    letter-spacing:1px;
+}
+
+header p{
+    margin-top:10px;
+    opacity:.9;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+/* CARD */
+.card{
+    background:rgba(255,255,255,.9);
+    padding:35px;
+    margin-bottom:40px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.card h2{
+    color:var(--darkred);
+    margin-top:0;
+}
+
+/* TIMELINE */
+.timeline{
+    position:relative;
+    padding-left:45px;
+    margin-top:30px;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:0;
+    width:4px;
+    height:100%;
+    background:linear-gradient(var(--red),var(--gold));
+    border-radius:5px;
+}
+
+.timeline-item{
+    position:relative;
+    margin-bottom:30px;
+    padding-left:20px;
+}
+
+.timeline-item::before{
+    content:"";
+    position:absolute;
+    left:-38px;
+    top:6px;
+    width:18px;
+    height:18px;
+    background:var(--gold);
+    border-radius:50%;
+    box-shadow:0 0 0 6px rgba(201,162,39,.25);
+}
+
+.timeline-item strong{
+    color:var(--darkred);
+}
+
+/* INTERAKTIF */
+.box{
+    background:linear-gradient(135deg,#fff,#fff0f0);
+    border-left:6px solid var(--red);
+    padding:20px;
+    margin-bottom:16px;
+    border-radius:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.box:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+.box h4{
+    margin:0;
+    color:var(--darkred);
+}
+
+.box p{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease;
+    margin:0;
+}
+
+/* ACTIVE */
+.box.active p{
+    margin-top:12px;
+    max-height:220px;
+}
+
+/* VIDEO */
+iframe{
+    width:100%;
+    height:380px;
+    border:none;
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
+}
+
+/* FOOTER */
+footer{
+    background:linear-gradient(135deg,var(--darkred),#4a0000);
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+/* TOMBOL KEMBALI KE HOME */
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: rgb(18, 218, 98);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 50px;
+    box-shadow: 0 12px 25px rgba(27,94,32,.35);
+    transition: all .3s ease;
+}
+
+.back-home:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 35px rgba(12, 183, 23, 0.5);
+}
+
+/* VERSI FLOAT (POJOK BAWAH) */
+.back-home-float {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 99;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Era Kemerdekaan Indonesia</h1>
+<p>Perjuangan Bangsa Indonesia 1945–1949</p>
+</header>
+
+<div class="container">
+
+<!-- PENGANTAR -->
+<div class="card">
+<h2>🇮🇩 Lahirnya Negara Indonesia</h2>
+<p>
+Era Kemerdekaan Indonesia dimulai dengan Proklamasi Kemerdekaan
+pada <strong>17 Agustus 1945</strong>.
+Periode ini merupakan masa krusial karena bangsa Indonesia
+harus mempertahankan kemerdekaannya dari ancaman penjajahan kembali.
+</p>
+</div>
+
+<!-- TIMELINE -->
+<div class="card">
+<h2>📅 Timeline Peristiwa Penting</h2>
+
+<div class="timeline">
+<div class="timeline-item">
+<strong>17 Agustus 1945</strong> – Proklamasi Kemerdekaan Indonesia
+</div>
+
+<div class="timeline-item">
+<strong>18 Agustus 1945</strong> – Pengesahan UUD 1945 dan pengangkatan Presiden
+</div>
+
+<div class="timeline-item">
+<strong>10 November 1945</strong> – Pertempuran Surabaya
+</div>
+
+<div class="timeline-item">
+<strong>1947–1948</strong> – Agresi Militer Belanda I dan II
+</div>
+
+<div class="timeline-item">
+<strong>27 Desember 1949</strong> – Pengakuan kedaulatan Indonesia
+</div>
+</div>
+</div>
+
+<!-- TOKOH & PERISTIWA -->
+<div class="card">
+<h2>👤 Tokoh & Peristiwa Utama</h2>
+
+<div class="box" onclick="toggle(this)">
+<h4>Ir. Soekarno</h4>
+<p>
+Proklamator dan Presiden pertama Republik Indonesia.
+Memimpin perjuangan diplomasi dan politik pascakemerdekaan.
+</p>
+</div>
+
+<div class="box" onclick="toggle(this)">
+<h4>Mohammad Hatta</h4>
+<p>
+Wakil Presiden pertama Indonesia dan tokoh penting
+dalam perumusan dasar negara.
+</p>
+</div>
+
+<div class="box" onclick="toggle(this)">
+<h4>Pertempuran Surabaya</h4>
+<p>
+Perlawanan rakyat Surabaya terhadap Sekutu pada
+10 November 1945 yang diperingati sebagai Hari Pahlawan.
+</p>
+</div>
+
+<div class="box" onclick="toggle(this)">
+<h4>Konferensi Meja Bundar (KMB)</h4>
+<p>
+Perundingan Indonesia–Belanda yang menghasilkan
+pengakuan kedaulatan Indonesia tahun 1949.
+</p>
+</div>
+</div>
+
+<!-- VIDEO -->
+<div class="card">
+<h2>🎥 Video Pembelajaran Era Kemerdekaan</h2>
+<iframe src="https://www.youtube.com/embed/_wma9pY4PxU" allowfullscreen></iframe>
+</div>
+<div style="text-align:center;">
+    <a href="index.html" class="back-home">
+        ⬅ Kembali ke Home
+    </a>
+</div>
+
+</div>
+
+<footer>
+<p>© 2026 Cahyo – Era Kemerdekaan Indonesia</p>
+</footer>
+
+<script>
+function toggle(el){
+    el.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
