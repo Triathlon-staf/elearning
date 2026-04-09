@@ -1,193 +1,200 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
-<title>Belajar Sejarah</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAB 1 — Era Hindu-Budha</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script>tailwind.config={theme:{extend:{fontFamily:{display:['Playfair Display','serif'],body:['DM Sans','sans-serif']},colors:{sand:{50:'#faf6f1',100:'#f3ebe0',200:'#e6d5be',300:'#d4b894',400:'#c09868'},earth:{500:'#8b6b4a',600:'#73583c',700:'#5c4630',800:'#3d2e1f',900:'#2a1f15'},rust:{DEFAULT:'#b85c38',light:'#d4774e',dark:'#964a2c'},olive:{DEFAULT:'#5a6e3c',light:'#7a9452',dark:'#3f4d29'}}}}}</script>
 <style>
-:root{
-    --primary:#1b5e20;
-    --secondary:#388e3c;
-    --accent:#c9a227;
-    --bg:#f4f8f5;
-}
-
-*{box-sizing:border-box}
-
-body{
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(180deg,#eef7f0,#ffffff);
-    color:#333;
-}
-
-/* HEADER */
-header{
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    color:white;
-    text-align:center;
-    padding:60px 20px;
-}
-
-header h1{
-    margin:0;
-    font-size:2.4rem;
-}
-
-header p{
-    opacity:.9;
-}
-
-/* NAV */
-nav{
-    position:sticky;
-    top:0;
-    z-index:10;
-    background:rgba(27,94,32,.95);
-    padding:12px;
-    text-align:center;
-}
-
-nav a{
-    color:white;
-    margin:0 18px;
-    text-decoration:none;
-    font-weight:500;
-}
-
-nav a:hover{
-    color:var(--accent);
-}
-
-/* CONTAINER */
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:50px 20px;
-}
-
-/* CARD */
-.card{
-    background:rgba(255,255,255,.88);
-    backdrop-filter:blur(6px);
-    padding:30px;
-    margin-bottom:35px;
-    border-radius:18px;
-    box-shadow:0 15px 35px rgba(0,0,0,.08);
-}
-
-.card h2{
-    margin-top:0;
-    color:var(--primary);
-}
-
-/* VIDEO */
-iframe{
-    width:100%;
-    height:380px;
-    border:none;
-    border-radius:18px;
-    box-shadow:0 15px 30px rgba(0,0,0,.15);
-}
-
-/* FOOTER */
-footer{
-    background:linear-gradient(135deg,var(--primary),#0d3b16);
-    color:white;
-    text-align:center;
-    padding:25px;
-}
-/* TOMBOL KEMBALI KE HOME */
-.back-home {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 28px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: 50px;
-    box-shadow: 0 12px 25px rgba(27,94,32,.35);
-    transition: all .3s ease;
-}
-
-.back-home:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 35px rgba(27,94,32,.5);
-}
-
-/* VERSI FLOAT (POJOK BAWAH) */
-.back-home-float {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    z-index: 99;
-}
-
+:root{--bg:#faf6f1;--fg:#2a1f15;--muted:#8b6b4a;--accent:#b85c38;--border:#e6d5be}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+.nav-link{position:relative}.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s ease}.nav-link:hover::after{width:100%}
+.content-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 32px;box-shadow:0 4px 20px rgba(42,31,21,.04)}
+.timeline-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);flex-shrink:0;position:relative;z-index:1}
+.timeline-line{position:absolute;left:6px;top:14px;bottom:0;width:2px;background:var(--border)}
+.highlight-box{background:linear-gradient(135deg,#faf6f1,#f3ebe0);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-<header>
-    <h1>Belajar Sejarah</h1>
-    <p>Indonesia</p>
-</header>
-
-<!-- ISI HOME -->
-<div class="container">
-
-    <div class="card">
-        <h2>📖 Sejarah Awal</h2>
-        <p>
-            Para cendekiawan India telah menulis tentang Dwipantara atau kerajaan Hindu Jawa Dwipa di Pulau Jawa
-            dan Sumatra atau Swarna Dwipa sekitar 200 SM. Bukti fisik awal yang menyebutkan mengenai adanya empat
-            kerajaan bercorak Hinduisme pada abad ke-1 dan abad ke-5, yaitu Kerajaan Salakanagara yang berdiri di
-            Jawa Barat sekitar tahun 130 M atau abad ke-1 sementara Kerajaan Kandis di Sumatra dan kerajaan
-            kerajaan pada abad ke-4 sampai abad ke-5 mulai muncul seperti Kerajaan Tarumanagara yang menguasai
-            Jawa Barat dan Kerajaan Kutai di pesisir Sungai Mahakam, Kalimantan.
-        </p>
-        <p>
-            Nusantara telah mempunyai warisan peradaban berusia ratusan tahun dengan dua kekaisaran besar,
-            yaitu Sriwijaya di Sumatra dan Majapahit di Jawa, ditambah dengan puluhan kerajaan kecil yang saling
-            terhubung melalui perdagangan dan perkawinan.
-        </p>
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16">
+    <a href="index.html" class="flex items-center gap-2.5 group"><div class="w-8 h-8 rounded-lg bg-rust/10 border border-rust/20 flex items-center justify-center group-hover:bg-rust/20 transition-colors"><i class="fas fa-scroll text-rust text-xs"></i></div><span class="font-display font-bold text-base text-earth-900">Sejarah ID</span></a>
+    <div class="hidden md:flex items-center gap-5">
+      <a href="index.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Beranda</a>
+      <a href="erahindubuda.html" class="nav-link text-rust text-sm font-semibold">Hindu-Budha</a>
+      <a href="eraislam.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Islam</a>
+      <a href="erakolonial.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Kolonial</a>
+      <a href="eraindonesia.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Kemerdekaan</a>
+      <a href="evaluasi.html" class="px-4 py-2 bg-rust text-white text-sm font-semibold rounded-lg hover:bg-rust-dark transition-colors">Evaluasi</a>
     </div>
+    <button id="mobile-btn" class="md:hidden w-9 h-9 rounded-lg border border-sand-200 flex items-center justify-center text-earth-600" aria-label="Menu"><i class="fas fa-bars text-sm"></i></button>
+  </div></div>
+  <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md border-b border-sand-200"><div class="px-4 py-3 flex flex-col gap-1">
+    <a href="index.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Beranda</a>
+    <a href="erahindubuda.html" class="mob-link text-rust hover:bg-rust/5 px-3 py-2.5 rounded-lg text-sm font-semibold">Hindu-Budha</a>
+    <a href="eraislam.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Islam</a>
+    <a href="erakolonial.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Kolonial</a>
+    <a href="eraindonesia.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">Kemerdekaan</a>
+    <a href="evaluasi.html" class="mob-link text-rust hover:bg-rust/5 px-3 py-2.5 rounded-lg text-sm font-semibold">Evaluasi</a>
+  </div></div>
+</nav>
 
-    <div class="card">
-        <h2>📖 Kerajaan Era Hindu–Buddha</h2>
-        <p>
-            Pada abad ke-4 di Kalimantan Timur berdiri kerajaan pertama yang mewariskan aksara pada tiang batu yupa.
-            Kerajaan ini dirintis oleh Kundungga dan mencapai kejayaan pada masa Raja Mulawarman.
-            Pusat kerajaan terletak di Muara Kaman, Kalimantan Timur.
-        </p>
-        <p>
-            Di Jawa Barat berkembang Kerajaan Tarumanagara yang kemudian dilanjutkan Kerajaan Sunda.
-            Di Sumatra, Sriwijaya berkembang sebagai kerajaan Buddha maritim yang menguasai jalur perdagangan.
-            Sementara di Jawa Timur, Majapahit muncul sebagai kerajaan besar yang mempersatukan Nusantara.
-        </p>
+<main class="relative z-10">
+  <!-- Hero -->
+  <header class="relative overflow-hidden pt-24 pb-14 md:pt-32 md:pb-20 border-b border-sand-200">
+    <div class="absolute top-16 right-[-60px] w-48 h-48 rounded-full border border-sand-200 opacity-40"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-4 reveal">
+        <span class="px-3 py-1 bg-rust/10 text-rust text-xs font-bold rounded-full tracking-wider">BAB 1</span>
+        <span class="text-earth-400 text-xs">|</span>
+        <span class="text-earth-500 text-xs font-medium">Abad ke-4 M — Abad ke-15 M</span>
+      </div>
+      <h1 class="font-display font-900 text-3xl sm:text-4xl md:text-5xl text-earth-900 mb-4 reveal" style="transition-delay:.1s">Era Hindu–Budha</h1>
+      <p class="text-earth-500 text-base md:text-lg leading-relaxed max-w-2xl reveal" style="transition-delay:.2s">Pengaruh kebudayaan India membawa transformasi besar bagi peradaban Nusantara. Lahirnya kerajaan-kerajaan bercorak Hindu dan Buddha menjadi fondasi awal identitas bangsa.</p>
     </div>
+  </header>
 
-    <div class="card">
-        <h2>🎥 Video Sejarah Indonesia</h2>
-        <iframe src="https://www.youtube.com/embed/S7GVz-YGWrY" allowfullscreen></iframe>
+  <!-- Konten -->
+  <section class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Pendahuluan -->
+      <div class="content-card mb-8 reveal">
+        <h2 class="font-display font-bold text-xl text-earth-900 mb-3">Pengaruh Kebudayaan India</h2>
+        <p class="text-earth-600 leading-relaxed text-sm md:text-base">Pengaruh Hindu dan Buddha masuk ke Nusantara sekitar abad ke-2 hingga ke-4 Masehi melalui jalur perdagangan. Pedagang dari India selatan (Coromandel) dan para brahmana membawa ajaran agama, bahasa Sanskerta, sistem pemerintahan, dan seni bangun. Proses Indianisasi ini tidak berupa penjajahan, melainkan <strong>asimilasi budaya</strong> yang diserap dan diadaptasi oleh masyarakat lokal sesuai kebudayaan mereka sendiri.</p>
+      </div>
+
+      <!-- Timeline Kerajaan -->
+      <div class="content-card mb-8 reveal" style="transition-delay:.05s">
+        <h2 class="font-display font-bold text-xl text-earth-900 mb-6">Kerajaan-Kerajaan Utama</h2>
+
+        <!-- Kutai -->
+        <div class="relative pl-8 mb-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-sand-100 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">~400 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kerajaan Kutai</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Kerajaan Hindu tertua di Nusantara, berlokasi di Muara Kaman, Kalimantan Timur. Bukti sejarahnya adalah tujuh buah <em>yupa</em> (tumpukan batu korban) yang ditulis dalam bahasa Sanskerta dan aksara Pallawa. Raja pertama yang tercatat adalah <strong>Kudungga</strong>, diikuti <strong>Aswawarman</strong>, dan <strong>Mulawarman</strong> yang mengadakan upacara besar dengan membagikan 20.000 ekor sapi.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Prasasti Yupa, situs Muara Kaman</div>
+        </div>
+
+        <!-- Tarumanegara -->
+        <div class="relative pl-8 mb-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-sand-100 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">~400 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kerajaan Tarumanegara</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Berdiri di Jawa Barat, diperintah oleh <strong>Purnawarman</strong>. Prasasti-prasasti Tarumanegara ditemukan di berbagai lokasi: Prasasti Tugu menceritakan penggalian saluran irigasi Sungai Candrabhaga, Prasasti Ciaruteun menampilkan jejak kaki raja sebagai tanda kekuasaan. Tarumanegara menunjukkan bahwa pada abad ke-5, Jawa Barat sudah memiliki pemerintahan terorganisir dengan kemampuan teknis pengairan.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Prasasti Tugu, Ciaruteun, Kebon Kopi, Jambu, Lebak, Munjul</div>
+        </div>
+
+        <!-- Sriwijaya -->
+        <div class="relative pl-8 mb-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-sand-100 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">683–1377 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kerajaan Sriwijaya</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Kerajaan maritim Buddha terbesar di Asia Tenggara, berpusat di Palembang. <strong>Dapunta Hyang Sri Jayanasa</strong> mendirikan kerajaan ini seperti yang tercatat dalam Prasasti Kedukan Bukit (683 M). Sriwijaya menguasai jalur perdagangan Selat Malaka dan menjadi <strong>pusat pendidikan Buddhis</strong> yang menarik pelajar dari Cina dan India. Biksu I-Tsing dari Cina tinggal selama 6 bulan di Sriwijaya tahun 671 M untuk mempelajari Sanskerta.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Prasasti Kedukan Bukit, Talang Tuwo, Karang Brahi, Kota Kapur, Gandasari</div>
+        </div>
+
+        <!-- Mataram Kuno -->
+        <div class="relative pl-8 mb-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-sand-100 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">732–928 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kerajaan Mataram Kuno</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Berdiri di Jawa Tengah, dipimpin oleh dua dinasti yang bergantian: <strong>Dinasti Sanjaya</strong> (Hindu) dan <strong>Dinasti Syailendra</strong> (Buddha). Dinasti Syailendra membangun Candi Borobudur (abad ke-8), salah satu mahakarya arsitektur dunia. Dinasti Sanjaya membangun Candi Prambanan (abad ke-9), kompleks candi Hindu terbesar di Indonesia. Pada tahun 928 M, pusat kerajaan dipindahkan ke Jawa Timur oleh Mpu Sindok karena letusan Gunung Merapi.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Candi Borobudur, Prambanan, Kalasan, Sewu, Plaosan, Prasasti Mantyasih</div>
+        </div>
+
+        <!-- Majapahit -->
+        <div class="relative pl-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot" style="background:var(--accent);border-color:var(--accent)"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-rust/10 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">1293–1527 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kerajaan Majapahit</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Kerajaan terbesar dalam sejarah Nusantara. Didirikan oleh <strong>Raden Wijaya</strong> tahun 1293 M di Jawa Timur. Puncak kejayaan tercapai di bawah <strong>Hayam Wuruk</strong> (1350–1389) dengan Mahapatih <strong>Gajah Mada</strong> yang mengucapkan <em>Sumpah Palapa</em> — berjanji tidak akan menikmati palapa sebelum seluruh Nusantara disatukan. Naskah <em>Nagarakretagama</em> (1365) karya Mpu Prapanca mencatat lebih dari 90 negara vassal dari Sumatra hingga Papua.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Prasasti Kudadu, Nagarakretagama, Candi Penataran, Gapura Wringin Lawang</div>
+        </div>
+      </div>
+
+      <!-- Tokoh Penting -->
+      <div class="content-card mb-8 reveal" style="transition-delay:.1s">
+        <h2 class="font-display font-bold text-xl text-earth-900 mb-5">Tokoh-Tokoh Penting</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-sand-50 rounded-xl p-4 border border-sand-200">
+            <p class="font-display font-bold text-earth-900 mb-1">Gajah Mada</p>
+            <p class="text-earth-500 text-xs">Mahapatih Majapahit, pengucap Sumpah Palapa, penyatu Nusantara.</p>
+          </div>
+          <div class="bg-sand-50 rounded-xl p-4 border border-sand-200">
+            <p class="font-display font-bold text-earth-900 mb-1">Mpu Prapanca</p>
+            <p class="text-earth-500 text-xs">Pujangga Majapahit, pengarang Nagarakretagama (1365 M).</p>
+          </div>
+          <div class="bg-sand-50 rounded-xl p-4 border border-sand-200">
+            <p class="font-display font-bold text-earth-900 mb-1">Mulawarman</p>
+            <p class="text-earth-500 text-xs">Raja Kutai, tercatat dalam prasasti Yupa sebagai pemberi 20.000 ekor sapi.</p>
+          </div>
+          <div class="bg-sand-50 rounded-xl p-4 border border-sand-200">
+            <p class="font-display font-bold text-earth-900 mb-1">Dapunta Hyang Sri Jayanasa</p>
+            <p class="text-earth-500 text-xs">Pendirii Sriwijaya, dikisahkan dalam Prasasti Kedukan Bukit.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gambar -->
+      <div class="content-card mb-8 reveal" style="transition-delay:.15s">
+        <h2 class="font-display font-bold text-xl text-earth-900 mb-4">Peninggalan Sejarah</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="overflow-hidden rounded-xl aspect-[4/3]"><img src="https://picsum.photos/seed/candi-prambanan-hindu/600/450.jpg" alt="Candi Prambanan" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy"></div>
+          <div class="overflow-hidden rounded-xl aspect-[4/3]"><img src="https://picsum.photos/seed/borobudur-temple-view/600/450.jpg" alt="Candi Borobudur" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy"></div>
+        </div>
+      </div>
+
+      <!-- Rangkuman -->
+      <div class="bg-olive/5 border border-olive/20 rounded-2xl p-6 md:p-8 reveal" style="transition-delay:.2s">
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 rounded-lg bg-olive/10 flex items-center justify-center shrink-0 mt-0.5"><i class="fas fa-lightbulb text-olive text-sm"></i></div>
+          <div>
+            <h3 class="font-display font-bold text-lg text-earth-900 mb-2">Rangkuman BAB 1</h3>
+            <ul class="text-earth-600 text-sm leading-relaxed space-y-1.5 list-none">
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Pengaruh Hindu-Budha masuk melalui jalur perdagangan dan asimilasi budaya, bukan penjajahan</li>
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Kutai dan Tarumanegara adalah kerajaan Hindu tertua (abad ke-4–5)</li>
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Sriwijaya adalah kerajaan maritim Buddha yang menguasai Selat Malaka</li>
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Mataram Kuno menghasilkan Borobudur (Buddha) dan Prambanan (Hindu)</li>
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Majapahit adalah kerajaan terbesar dengan visi persatuan Nusantara melalui Sumpah Palapa</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigasi bab -->
+      <div class="flex justify-between items-center mt-10 reveal" style="transition-delay:.25s">
+        <a href="index.html" class="flex items-center gap-2 text-earth-500 hover:text-rust text-sm font-medium transition-colors"><i class="fas fa-arrow-left text-xs"></i>Beranda</a>
+        <a href="eraislam.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-rust text-white text-sm font-semibold rounded-xl hover:bg-rust-dark transition-colors">BAB 2: Era Islam <i class="fas fa-arrow-right text-xs"></i></a>
+      </div>
+
     </div>
-    <div style="text-align:center; margin-top:40px;">
-    <a href="index.html" class="back-home">
-        ⬅ Kembali ke Home
-    </a>
-</div>
+  </section>
+</main>
 
-</div>
-
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 Cahyo</p>
+<footer class="relative z-10 bg-earth-900 text-sand-200/80 py-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2"><div class="w-6 h-6 rounded-md bg-rust/20 flex items-center justify-center"><i class="fas fa-scroll text-rust text-[9px]"></i></div><span class="font-display font-bold text-sand-100 text-xs">Sejarah ID</span></a>
+    <p class="text-xs">&copy; 2026 Pendidikan</p>
+    <a href="evaluasi.html" class="px-3 py-1.5 bg-rust/20 border border-rust/30 text-rust-light text-xs font-semibold rounded-lg hover:bg-rust/30 transition-colors"><i class="fas fa-pen-to-square mr-1"></i>Evaluasi</a>
+  </div>
 </footer>
 
+<script>
+const navbar=document.getElementById('navbar'),mobileBtn=document.getElementById('mobile-btn'),mobileMenu=document.getElementById('mobile-menu');
+window.addEventListener('scroll',()=>{if(window.scrollY>30)navbar.classList.add('bg-sand-50/90','backdrop-blur-md','border-b','border-sand-200','shadow-sm');else navbar.classList.remove('bg-sand-50/90','backdrop-blur-md','border-b','border-sand-200','shadow-sm')});
+mobileBtn.addEventListener('click',()=>{mobileMenu.classList.toggle('hidden');const i=mobileBtn.querySelector('i');i.classList.toggle('fa-bars');i.classList.toggle('fa-times')});
+document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>{mobileMenu.classList.add('hidden');const i=mobileBtn.querySelector('i');i.classList.add('fa-bars');i.classList.remove('fa-times')}));
+const revealEls=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});revealEls.forEach(el=>obs.observe(el));
+window.addEventListener('load',()=>setTimeout(()=>revealEls.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('visible')}),80));
+</script>
 </body>
 </html>
