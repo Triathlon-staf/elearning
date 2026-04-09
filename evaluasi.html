@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluasi — Sejarah Indonesia</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script>tailwind.config={theme:{extend:{fontFamily:{display:['Playfair Display','serif'],body:['DM Sans','sans-serif']},colors:{sand:{50:'#faf6f1',100:'#f3ebe0',200:'#e6d5be',300:'#d4b894',400:'#c09868'},earth:{500:'#8b6b4a',600:'#73583c',700:'#5c4630',800:'#3d2e1f',900:'#2a1f15'},rust:{DEFAULT:'#b85c38',light:'#d4774e',dark:'#964a2c'},olive:{DEFAULT:'#5a6e3c',light:'#7a9452',dark:'#3f4d29'}}}}}</script>
+<style>
+:root{--bg:#faf6f1;--fg:#2a1f15;--muted:#8b6b4a;--accent:#b85c38;--border:#e6d5be}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+.nav-link{position:relative}.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s ease}.nav-link:hover::after{width:100%}
+.quiz-option{transition:all .3s ease;border:1px solid var(--border);cursor:pointer}
+.quiz-option:hover:not(.answered){border-color:var(--accent);background:rgba(184,92,56,.05)}
+.quiz-option.correct{border-color:#5a6e3c!important;background:rgba(90,110,60,.08)!important}
+.quiz-option.wrong{border-color:#b85c38!important;background:rgba(184,92,56,.08)!important}
+.toast{transition:opacity .3s ease,transform .3s ease}
+@keyframes confetti-fall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.confetti-piece{position:fixed;top:-10px;width:8px;height:8px;border-radius:2px;animation:confetti-fall 3s ease-in forwards;pointer-events:none;z-index:999}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.confetti-piece{animation:none;display:none}}
+</style>
+</head>
+<body>
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16">
+    <a href="index.html" class="flex items-center gap-2.5 group"><div class="w-8 h-8 rounded-lg bg-rust/10 border border-rust/20 flex items-center justify-center group-hover:bg-rust/20 transition-colors"><i class="fas fa-scroll text-rust text-xs"></i></div><span class="font-display font-bold text-base text-earth-900">Sejarah ID</span></a>
+    <div class="hidden md:flex items-center gap-5">
+      <a href="index.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Beranda</a>
+      <a href="erahindubuda.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Hindu-Budha</a>
+      <a href="eraislam.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Islam</a>
+      <a href="erakolonial.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Kolonial</a>
+      <a href="eraindonesia.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Kemerdekaan</a>
+      <a href="evaluasi.html" class="px-4 py-2 bg-rust text-white text-sm font-semibold rounded-lg hover:bg-rust-dark transition-colors">Evaluasi</a>
+    </div>
+    <button id="mobile-btn" class="md:hidden w-9 h-9 rounded-lg border border-sand-200 flex items-center justify-center text-earth-600" aria-label="Menu"><i class="fas fa-bars text-sm"></i></button>
+  </div></div>
+  <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md border-b border-sand-200"><div class="px-4 py-3 flex flex-col gap-1">
+    <a href="index.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Beranda</a>
+    <a href="erahindubuda.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Hindu-Budha</a>
+    <a href="eraislam.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Islam</a>
+    <a href="erakolonial.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Kolonial</a>
+    <a href="eraindonesia.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Kemerdekaan</a>
+    <a href="evaluasi.html" class="mob-link text-rust hover:bg-rust/5 px-3 py-2.5 rounded-lg text-sm font-semibold">Evaluasi</a>
+  </div></div>
+</nav>
+
+<main class="relative z-10">
+  <header class="relative overflow-hidden pt-24 pb-14 md:pt-32 md:pb-20 border-b border-sand-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-4 reveal">
+        <span class="px-3 py-1 bg-rust/10 text-rust text-xs font-bold rounded-full tracking-wider">EVALUASI</span>
+      </div>
+      <h1 class="font-display font-900 text-3xl sm:text-4xl md:text-5xl text-earth-900 mb-4 reveal" style="transition-delay:.1s">Uji Pemahamanmu</h1>
+      <p class="text-earth-500 text-base md:text-lg leading-relaxed max-w-2xl reveal" style="transition-delay:.2s">Jawab 15 pertanyaan berikut untuk menguji seberapa dalam pemahamanmu tentang sejarah Indonesia dari keempat bab.</p>
+    </div>
+  </header>
+
+  <section class="py-12 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Progress -->
+      <div class="mb-8 reveal">
+        <div class="flex justify-between text-sm mb-2">
+          <span class="text-earth-500">Pertanyaan <span id="q-cur" class="text-rust font-bold">1</span> dari <span id="q-tot" class="text-rust font-bold">15</span></span>
+          <span class="text-earth-
