@@ -1,280 +1,168 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <title>Sejarah Islam di Indonesia</title>
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f1f8e9;
-        }
-
-        /* HEADER */
-        header {
-            background-color: #404790;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        /* NAVBAR */
-        nav {
-            background-color: #388e3c;
-            padding: 12px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 20px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* CONTAINER */
-        .container {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        /* CARD */
-        .card {
-            background-color: white;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            color: #2e7d32;
-        }
-
-        /* TIMELINE */
-        .timeline {
-            border-left: 4px solid #2e7d32;
-            padding-left: 25px;
-            margin-top: 20px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -14px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            background-color: #2e7d32;
-            border-radius: 50%;
-        }
-
-        .timeline-item h4 {
-            margin: 0;
-            color: #1b5e20;
-        }
-
-        .timeline-item p {
-            margin: 6px 0 0;
-        }
-
-        /* KERAJAAN */
-        .kingdom {
-            border-left: 6px solid #2e7d32;
-            background-color: #f9fff9;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .kingdom:hover {
-            background-color: #e8f5e9;
-        }
-
-        .kingdom h4 {
-            margin: 0;
-            color: #2e7d32;
-        }
-
-        .kingdom p {
-            display: none;
-            margin-top: 10px;
-            color: #333;
-        }
-
-        /* VIDEO */
-        iframe {
-            width: 100%;
-            height: 360px;
-            border-radius: 12px;
-            border: none;
-            margin-top: 15px;
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: #2e7d32;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-
-        /* TOMBOL KEMBALI KE HOME */
-.back-home {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 28px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: rgb(5, 113, 30);
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: 50px;
-    box-shadow: 0 12px 25px rgba(27,94,32,.35);
-    transition: all .3s ease;
-}
-
-.back-home:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 35px rgba(27,94,32,.5);
-}
-
-/* VERSI FLOAT (POJOK BAWAH) */
-.back-home-float {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    z-index: 99;
-}
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAB 2 — Era Islam</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script>tailwind.config={theme:{extend:{fontFamily:{display:['Playfair Display','serif'],body:['DM Sans','sans-serif']},colors:{sand:{50:'#faf6f1',100:'#f3ebe0',200:'#e6d5be',300:'#d4b894',400:'#c09868'},earth:{500:'#8b6b4a',600:'#73583c',700:'#5c4630',800:'#3d2e1f',900:'#2a1f15'},rust:{DEFAULT:'#b85c38',light:'#d4774e',dark:'#964a2c'},olive:{DEFAULT:'#5a6e3c',light:'#7a9452',dark:'#3f4d29'}}}}}</script>
+<style>
+:root{--bg:#faf6f1;--fg:#2a1f15;--muted:#8b6b4a;--accent:#b85c38;--border:#e6d5be}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+.nav-link{position:relative}.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s ease}.nav-link:hover::after{width:100%}
+.content-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 32px;box-shadow:0 4px 20px rgba(42,31,21,.04)}
+.timeline-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--accent);background:var(--bg);flex-shrink:0;position:relative;z-index:1}
+.timeline-line{position:absolute;left:6px;top:14px;bottom:0;width:2px;background:var(--border)}
+.highlight-box{background:linear-gradient(135deg,#faf6f1,#f3ebe0);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
 </head>
-
 <body>
 
-<header>
-    <h1>Sejarah Islam di Indonesia</h1>
-    <p>Timeline & Kerajaan Islam Nusantara</p>
-</header>
-
-<div class="container">
-
-    <div class="card">
-        <h2>🕌 Masuknya Islam ke Nusantara</h2>
-        <p>
-            Islam mulai masuk ke Indonesia sekitar abad ke-7 Masehi melalui jalur perdagangan.
-            Para pedagang Muslim dari Arab, Persia, dan Gujarat berinteraksi dengan masyarakat lokal
-            sehingga Islam berkembang secara damai.
-        </p>
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16">
+    <a href="index.html" class="flex items-center gap-2.5 group"><div class="w-8 h-8 rounded-lg bg-rust/10 border border-rust/20 flex items-center justify-center group-hover:bg-rust/20 transition-colors"><i class="fas fa-scroll text-rust text-xs"></i></div><span class="font-display font-bold text-base text-earth-900">Sejarah ID</span></a>
+    <div class="hidden md:flex items-center gap-5">
+      <a href="index.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Beranda</a>
+      <a href="erahindubuda.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Hindu-Budha</a>
+      <a href="eraislam.html" class="nav-link text-rust text-sm font-semibold">Islam</a>
+      <a href="erakolonial.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Kolonial</a>
+      <a href="eraindonesia.html" class="nav-link text-earth-600 hover:text-earth-900 text-sm font-medium">Kemerdekaan</a>
+      <a href="evaluasi.html" class="px-4 py-2 bg-rust text-white text-sm font-semibold rounded-lg hover:bg-rust-dark transition-colors">Evaluasi</a>
     </div>
+    <button id="mobile-btn" class="md:hidden w-9 h-9 rounded-lg border border-sand-200 flex items-center justify-center text-earth-600" aria-label="Menu"><i class="fas fa-bars text-sm"></i></button>
+  </div></div>
+  <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md border-b border-sand-200"><div class="px-4 py-3 flex flex-col gap-1">
+    <a href="index.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Beranda</a>
+    <a href="erahindubuda.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Hindu-Budha</a>
+    <a href="eraislam.html" class="mob-link text-rust hover:bg-rust/5 px-3 py-2.5 rounded-lg text-sm font-semibold">Islam</a>
+    <a href="erakolonial.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Kolonial</a>
+    <a href="eraindonesia.html" class="mob-link text-earth-600 hover:text-rust hover:bg-sand-50 px-3 py-2.5 rounded-lg text-sm font-medium">Kemerdekaan</a>
+    <a href="evaluasi.html" class="mob-link text-rust hover:bg-rust/5 px-3 py-2.5 rounded-lg text-sm font-semibold">Evaluasi</a>
+  </div></div>
+</nav>
 
-    <div class="card">
-        <h2>📅 Timeline Perkembangan Islam</h2>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <h4>Abad ke-7 M</h4>
-                <p>Pedagang Muslim mulai datang ke wilayah Nusantara.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h4>Abad ke-9 M</h4>
-                <p>Terbentuk komunitas Muslim di pesisir Sumatra dan Jawa.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h4>Abad ke-13 M</h4>
-                <p>Berdirinya Kesultanan Samudra Pasai.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h4>Abad ke-15 M</h4>
-                <p>Penyebaran Islam di Jawa oleh Wali Songo.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h4>Abad ke-16–17 M</h4>
-                <p>Kerajaan Islam berkembang dan melawan penjajahan Eropa.</p>
-            </div>
-        </div>
+<main class="relative z-10">
+  <header class="relative overflow-hidden pt-24 pb-14 md:pt-32 md:pb-20 border-b border-sand-200">
+    <div class="absolute bottom-[-40px] left-[-40px] w-48 h-48 rounded-full border border-sand-200 opacity-40"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-4 reveal">
+        <span class="px-3 py-1 bg-rust/10 text-rust text-xs font-bold rounded-full tracking-wider">BAB 2</span>
+        <span class="text-earth-400 text-xs">|</span>
+        <span class="text-earth-500 text-xs font-medium">Abad ke-13 M — Abad ke-16 M</span>
+      </div>
+      <h1 class="font-display font-900 text-3xl sm:text-4xl md:text-5xl text-earth-900 mb-4 reveal" style="transition-delay:.1s">Era Islam</h1>
+      <p class="text-earth-500 text-base md:text-lg leading-relaxed max-w-2xl reveal" style="transition-delay:.2s">Islam masuk ke Nusantara bukan melalui pedang, melainkan melalui perdagangan, dakwah, dan perkawinan — menjadikan Indonesia negara Muslim terbesar dengan proses yang unik dan damai.</p>
     </div>
+  </header>
 
-    <div class="card">
-        <h2>🏰 Kerajaan Islam di Indonesia</h2>
+  <section class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="kingdom" onclick="toggleDesc(this)">
-            <h4>Kesultanan Samudra Pasai</h4>
-            <p>
-                Kerajaan Islam pertama di Indonesia yang menjadi pusat perdagangan
-                dan penyebaran Islam di Asia Tenggara.
-            </p>
+      <div class="content-card mb-8 reveal">
+        <h2 class="font-display font-bold text-xl text-earth-900 mb-3">Proses Masuknya Islam</h2>
+        <p class="text-earth-600 leading-relaxed text-sm md:text-base">Islam mulai masuk ke Nusantara pada abad ke-13 Masehi, dibawa oleh para pedagang Muslim dari Gujarat (India), Persia, Arab, dan Cina. Berbeda dengan penyebaran Islam di wilayah lain yang melibatkan penaklukan militer, di Nusantara Islam disebarkan secara <strong>damai melalui jalur perdagangan</strong>. Para pedagang Muslim menetap di pelabuhan-pelabuhan pesisir, berhubungan dengan masyarakat lokal, dan secara bertahap memperkenalkan ajaran Islam melalui akhlak yang baik, perdagangan yang jujur, dan perkawinan campuran dengan penduduk setempat.</p>
+      </div>
+
+      <div class="content-card mb-8 reveal" style="transition-delay:.05s">
+        <h2 class="font-display font-bold text-xl text-earth-900 mb-6">Kesultanan-Kesultanan Penting</h2>
+
+        <div class="relative pl-8 mb-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-sand-100 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">1297 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kesultanan Samudera Pasai</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Kesultanan Islam pertama di Nusantara, berdiri di Aceh. Didirikan oleh <strong>Malik Al-Saleh</strong> yang memeluk Islam dan mengubah kerajaannya menjadi kesultanan. Samudera Pasai menjadi pusat perdagangan dan penyebaran Islam di kawasan Selat Malaka. Ibnu Battuta, pelancong dari Maroko, mengunjungi Pasai tahun 1345–1346 M dan mencatat kemakmuran kerajaan ini.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Makam Malik Al-Saleh, koin emas Pasai</div>
         </div>
 
-        <div class="kingdom" onclick="toggleDesc(this)">
-            <h4>Kesultanan Demak</h4>
-            <p>
-                Kerajaan Islam pertama di Pulau Jawa, didirikan oleh Raden Patah
-                dengan dukungan Wali Songo.
-            </p>
+        <div class="relative pl-8 mb-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-sand-100 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">1475–1554 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kesultanan Demak</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Kesultanan pertama di Jawa, didirikan oleh <strong>Raden Patah</strong> — putra raja Majapahit terakhir yang memeluk Islam. Demak berperan besar dalam penyebaran Islam di Jawa melalui para <strong>Wali Songo</strong> (Sembilan Wali). Demak juga melakukan ekspedisi ke Malaka untuk mengusir Portugis tahun 1511 M, menunjukkan kekuatan militer dan komitmen Islam di kawasan tersebut.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Masjid Agung Demak, Makam Raden Patah dan para Wali</div>
         </div>
 
-        <div class="kingdom" onclick="toggleDesc(this)">
-            <h4>Kesultanan Banten</h4>
-            <p>
-                Kerajaan maritim kuat yang berperan penting dalam perdagangan internasional.
-            </p>
+        <div class="relative pl-8 mb-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-sand-100 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">1496–1903 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kesultanan Ternate & Tidore</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Dua kesultanan di Maluku yang menguasai perdagangan cengkeh — komoditas paling berharga di dunia pada masanya. <strong>Sultan Baabullah</strong> dari Ternate (1570–1583) berhasil mempersatukan pulau-pulau di sekitarnya dan menolak kehadiran Portugis. Kerajaan-kerajaan Islam di Maluku berperan penting dalam menjaga kedaulatan wilayah Indonesia paling timur.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Benteng Tolukko, Kedaton Sultan Ternate, Keraton Tidore</div>
         </div>
 
-        <div class="kingdom" onclick="toggleDesc(this)">
-            <h4>Kesultanan Mataram Islam</h4>
-            <p>
-                Kerajaan Islam besar di Jawa yang mencapai kejayaan pada masa Sultan Agung.
-            </p>
+        <div class="relative pl-8">
+          <div class="absolute left-0 top-1"><div class="timeline-dot" style="background:var(--accent);border-color:var(--accent)"></div></div>
+          <span class="inline-block px-2.5 py-0.5 bg-rust/10 text-rust text-[10px] font-bold rounded-full mb-2 tracking-wider">1526 M</span>
+          <h3 class="font-display font-bold text-lg text-earth-900 mb-1">Kesultanan Aceh Darussalam</h3>
+          <p class="text-earth-600 text-sm leading-relaxed mb-2">Kesultanan terkaya dan terkuat di Asia Tenggara pada abad ke-16–17. Dikenal sebagai <em>"Serambi Mekah"</em>, Aceh menjadi pusat pendidikan Islam yang sangat terhormat. <strong>Sultan Iskandar Muda</strong> (1607–1636) memimpin Aceh pada puncak kejayaan — armada lautnya menguasai Selat Malaka barat dan berperang melawan Portugis, Belanda, dan Johor. Aceh juga memiliki perpustakaan besar dan menjadi pusat intelektual Islam.</p>
+          <div class="highlight-box text-sm"><i class="fas fa-landmark text-rust mr-2"></i><strong>Peninggalan:</strong> Masjid Raya Baiturrahman, Makam Sultan Iskandar Muda, Kherkhof</div>
         </div>
+      </div>
 
-        <div class="kingdom" onclick="toggleDesc(this)">
-            <h4>Kesultanan Ternate & Tidore</h4>
-            <p>
-                Kerajaan Islam di Maluku yang terkenal sebagai penghasil rempah-rempah dunia.
-            </p>
+      <!-- Wali Songo -->
+      <div class="content-card mb-8 reveal" style="transition-delay:.1s">
+        <h2 class="font-display font-bold text-xl text-earth-900 mb-3">Wali Songo — Penyebar Islam di Jawa</h2>
+        <p class="text-earth-600 text-sm leading-relaxed mb-4">Wali Songo (Sembilan Wali) adalah gelar untuk para ulama yang berperan besar dalam penyebaran Islam di Jawa pada abad ke-15–16. Mereka menggunakan pendekatan <strong>kultural</strong> — menghormati tradisi lokal, menggunakan seni (wayang, gamelan), dan membangun masjid dengan arsitektur khas Jawa.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="bg-sand-50 rounded-xl p-4 border border-sand-200 text-center"><p class="font-display font-bold text-earth-900 text-sm">Sunan Giri</p><p class="text-earth-500 text-xs mt-1">Pendidikan, pemerintahan</p></div>
+          <div class="bg-sand-50 rounded-xl p-4 border border-sand-200 text-center"><p class="font-display font-bold text-earth-900 text-sm">Sunan Kalijaga</p><p class="text-earth-500 text-xs mt-1">Seni, wayang, gamelan</p></div>
+          <div class="bg-sand-50 rounded-xl p-4 border border-sand-200 text-center"><p class="font-display font-bold text-earth-900 text-sm">Sunan Ampel</p><p class="text-earth-500 text-xs mt-1">Masjid Ampel, Surabaya</p></div>
         </div>
+      </div>
+
+      <!-- Gambar -->
+      <div class="content-card mb-8 reveal" style="transition-delay:.15s">
+        <h2 class="font-display font-bold text-xl text-earth-900 mb-4">Peninggalan Era Islam</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="overflow-hidden rounded-xl aspect-[4/3]"><img src="https://picsum.photos/seed/masjid-agung-demak-java/600/450.jpg" alt="Masjid Agung Demak" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy"></div>
+          <div class="overflow-hidden rounded-xl aspect-[4/3]"><img src="https://picsum.photos/seed/baiturrahman-aceh-mosque/600/450.jpg" alt="Masjid Raya Baiturrahman" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="bg-olive/5 border border-olive/20 rounded-2xl p-6 md:p-8 reveal" style="transition-delay:.2s">
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 rounded-lg bg-olive/10 flex items-center justify-center shrink-0 mt-0.5"><i class="fas fa-lightbulb text-olive text-sm"></i></div>
+          <div>
+            <h3 class="font-display font-bold text-lg text-earth-900 mb-2">Rangkuman BAB 2</h3>
+            <ul class="text-earth-600 text-sm leading-relaxed space-y-1.5 list-none">
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Islam masuk melalui perdagangan, dakwah damai, dan akulturasi budaya lokal</li>
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Samudera Pasai (1297) adalah kesultanan Islam pertama di Nusantara</li>
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Wali Songo menyebarkan Islam di Jawa dengan pendekatan kultural dan seni</li>
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Kesultanan Demak, Aceh, Ternate-Tidore menjadi kekuatan politik-ekonomi utama</li>
+              <li class="flex items-start gap-2"><i class="fas fa-check text-olive text-xs mt-1"></i>Akulturasi Islam dengan budaya lokal menghasilkan Islam Nusantara yang moderat dan toleran</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center mt-10 reveal" style="transition-delay:.25s">
+        <a href="erahindubuda.html" class="flex items-center gap-2 text-earth-500 hover:text-rust text-sm font-medium transition-colors"><i class="fas fa-arrow-left text-xs"></i>BAB 1: Hindu-Budha</a>
+        <a href="erakolonial.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-rust text-white text-sm font-semibold rounded-xl hover:bg-rust-dark transition-colors">BAB 3: Era Kolonial <i class="fas fa-arrow-right text-xs"></i></a>
+      </div>
     </div>
+  </section>
+</main>
 
-    <div class="card">
-        <h2>🎥 Video Sejarah Islam di Indonesia</h2>
-        <iframe src="https://www.youtube.com/embed/_wma9pY4PxU"
-        allowfullscreen></iframe>
-    </div>
-        <div style="text-align:center;">
-    <a href="index.html" class="back-home">
-        ⬅ Kembali ke Home
-    </a>
-</div>
-</div>
-
-<footer>
-    <p>© 2026 Cahyo</p>
+<footer class="relative z-10 bg-earth-900 text-sand-200/80 py-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2"><div class="w-6 h-6 rounded-md bg-rust/20 flex items-center justify-center"><i class="fas fa-scroll text-rust text-[9px]"></i></div><span class="font-display font-bold text-sand-100 text-xs">Sejarah ID</span></a>
+    <p class="text-xs">&copy; 2026 Pendidikan</p>
+    <a href="evaluasi.html" class="px-3 py-1.5 bg-rust/20 border border-rust/30 text-rust-light text-xs font-semibold rounded-lg hover:bg-rust/30 transition-colors"><i class="fas fa-pen-to-square mr-1"></i>Evaluasi</a>
+  </div>
 </footer>
 
 <script>
-function toggleDesc(el) {
-    const p = el.querySelector("p");
-    p.style.display = p.style.display === "block" ? "none" : "block";
-}
+const navbar=document.getElementById('navbar'),mobileBtn=document.getElementById('mobile-btn'),mobileMenu=document.getElementById('mobile-menu');
+window.addEventListener('scroll',()=>{if(window.scrollY>30)navbar.classList.add('bg-sand-50/90','backdrop-blur-md','border-b','border-sand-200','shadow-sm');else navbar.classList.remove('bg-sand-50/90','backdrop-blur-md','border-b','border-sand-200','shadow-sm')});
+mobileBtn.addEventListener('click',()=>{mobileMenu.classList.toggle('hidden');const i=mobileBtn.querySelector('i');i.classList.toggle('fa-bars');i.classList.toggle('fa-times')});
+document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>{mobileMenu.classList.add('hidden');const i=mobileBtn.querySelector('i');i.classList.add('fa-bars');i.classList.remove('fa-times')}));
+const revealEls=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});revealEls.forEach(el=>obs.observe(el));
+window.addEventListener('load',()=>setTimeout(()=>revealEls.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('visible')}),80));
 </script>
-
 </body>
 </html>
