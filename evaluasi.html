@@ -14,14 +14,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--fg);overf
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
 .nav-link{position:relative}.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s ease}.nav-link:hover::after{width:100%}
-.quiz-option{transition:all .3s ease;border:1px solid var(--border);cursor:pointer}
+.quiz-option{transition:all .3s ease;border:1px solid var(--border);cursor:pointer;user-select:none}
 .quiz-option:hover:not(.answered){border-color:var(--accent);background:rgba(184,92,56,.05)}
-.quiz-option.correct{border-color:#5a6e3c!important;background:rgba(90,110,60,.08)!important}
+.quiz-option.correct{border-color:#5a6e3c!important;background:rgba(90,110,60,.1)!important}
+.quiz-option.correct .opt-label{background:#5a6e3c!important;color:#fff!important;border-color:#5a6e3c!important}
 .quiz-option.wrong{border-color:#b85c38!important;background:rgba(184,92,56,.08)!important}
+.quiz-option.wrong .opt-label{background:#b85c38!important;color:#fff!important;border-color:#b85c38!important}
 .toast{transition:opacity .3s ease,transform .3s ease}
 @keyframes confetti-fall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
 .confetti-piece{position:fixed;top:-10px;width:8px;height:8px;border-radius:2px;animation:confetti-fall 3s ease-in forwards;pointer-events:none;z-index:999}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.confetti-piece{animation:none;display:none}}
+@keyframes pop-in{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
+.pop-in{animation:pop-in .5s ease forwards}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.confetti-piece{animation:none;display:none}.pop-in{animation:none;opacity:1}}
 </style>
 </head>
 <body>
@@ -63,8 +67,256 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <section class="py-12 md:py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <!-- Progress -->
-      <div class="mb-8 reveal">
-        <div class="flex justify-between text-sm mb-2">
-          <span class="text-earth-500">Pertanyaan <span id="q-cur" class="text-rust font-bold">1</span> dari <span id="q-tot" class="text-rust font-bold">15</span></span>
-          <span class="text-earth-
+      <!-- Area Kuis -->
+      <div id="quiz-area" class="reveal" style="transition-delay:.1s">
+
+        <!-- Progress -->
+        <div class="mb-8">
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-earth-500">Pertanyaan <span id="q-cur" class="text-rust font-bold">1</span> dari <span id="q-tot" class="text-rust font-bold">15</span></span>
+            <span class="text-earth-500">Skor: <span id="q-score" class="text-rust font-bold">0</span></span>
+          </div>
+          <div class="h-1.5 bg-sand-200 rounded-full overflow-hidden">
+            <div id="q-bar" class="h-full bg-gradient-to-r from-rust-dark to-rust rounded-full transition-all duration-500" style="width:6.67%"></div>
+          </div>
+        </div>
+
+        <!-- Soal -->
+        <div id="q-card" class="bg-white border border-sand-200 rounded-2xl p-6 md:p-8 shadow-sm">
+          <div class="flex items-center gap-2 mb-1">
+            <span id="q-bab" class="px-2 py-0.5 bg-rust/10 text-rust text-[10px] font-bold rounded-full tracking-wider">BAB 1</span>
+          </div>
+          <h2 id="q-text" class="font-display font-bold text-lg md:text-xl text-earth-900 mb-6"></h2>
+          <div id="q-opts" class="flex flex-col gap-3"></div>
+          <div id="q-feedback" class="hidden mt-5 p-4 rounded-xl text-sm leading-relaxed"></div>
+          <button id="q-next" class="hidden mt-5 w-full py-3 bg-rust text-white font-semibold rounded-xl hover:bg-rust-dark transition-colors text-sm"></button>
+        </div>
+
+        <!-- Hasil -->
+        <div id="q-result" class="hidden">
+          <div class="bg-white border border-sand-200 rounded-2xl p-8 md:p-10 shadow-sm text-center">
+            <div class="w-20 h-20 rounded-full border-2 border-rust flex items-center justify-center mx-auto mb-5">
+              <i id="result-icon" class="fas fa-trophy text-rust text-3xl"></i>
+            </div>
+            <h3 class="font-display font-bold text-2xl text-earth-900 mb-1">Evaluasi Selesai</h3>
+            <p class="text-earth-500 text-sm mb-5">Skor akhirmu:</p>
+            <p id="result-score" class="font-display font-900 text-5xl text-rust mb-1"></p>
+            <p id="result-pct" class="text-earth-400 text-sm mb-2"></p>
+            <p id="result-msg" class="text-earth-600 text-sm mb-6 max-w-md mx-auto leading-relaxed"></p>
+
+            <!-- Rincian per bab -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+              <div class="bg-sand-50 rounded-xl p-3 border border-sand-200">
+                <p class="text-[10px] font-bold tracking-wider text-rust/60 uppercase">BAB 1</p>
+                <p id="r-b1" class="font-display font-bold text-lg text-earth-900 mt-0.5">0/4</p>
+              </div>
+              <div class="bg-sand-50 rounded-xl p-3 border border-sand-200">
+                <p class="text-[10px] font-bold tracking-wider text-rust/60 uppercase">BAB 2</p>
+                <p id="r-b2" class="font-display font-bold text-lg text-earth-900 mt-0.5">0/4</p>
+              </div>
+              <div class="bg-sand-50 rounded-xl p-3 border border-sand-200">
+                <p class="text-[10px] font-bold tracking-wider text-rust/60 uppercase">BAB 3</p>
+                <p id="r-b3" class="font-display font-bold text-lg text-earth-900 mt-0.5">0/4</p>
+              </div>
+              <div class="bg-sand-50 rounded-xl p-3 border border-sand-200">
+                <p class="text-[10px] font-bold tracking-wider text-rust/60 uppercase">BAB 4</p>
+                <p id="r-b4" class="font-display font-bold text-lg text-earth-900 mt-0.5">0/3</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+              <button id="btn-restart" class="px-6 py-3 bg-rust text-white font-semibold rounded-xl hover:bg-rust-dark transition-colors text-sm"><i class="fas fa-redo mr-2 text-xs"></i>Ulangi Evaluasi</button>
+              <a href="index.html" class="px-6 py-3 border border-sand-200 text-earth-700 font-semibold rounded-xl hover:border-rust/30 hover:text-rust transition-all text-sm"><i class="fas fa-home mr-2 text-xs"></i>Kembali ke Beranda</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="relative z-10 bg-earth-900 text-sand-200/80 py-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <a href="index.html" class="flex items-center gap-2"><div class="w-6 h-6 rounded-md bg-rust/20 flex items-center justify-center"><i class="fas fa-scroll text-rust text-[9px]"></i></div><span class="font-display font-bold text-sand-100 text-xs">Sejarah ID</span></a>
+    <p class="text-xs">&copy; 2026 Pendidikan</p>
+    <a href="evaluasi.html" class="px-3 py-1.5 bg-rust/20 border border-rust/30 text-rust-light text-xs font-semibold rounded-lg hover:bg-rust/30 transition-colors"><i class="fas fa-pen-to-square mr-1"></i>Evaluasi</a>
+  </div>
+</footer>
+
+<div id="toast" class="fixed bottom-5 right-5 z-[200] hidden toast"><div class="bg-earth-900 border border-earth-700 rounded-xl px-4 py-3 shadow-xl flex items-center gap-2.5"><i id="toast-icon" class="fas fa-check-circle text-olive-light"></i><span id="toast-text" class="text-sand-100 text-sm font-medium"></span></div></div>
+
+<script>
+// ========== NAVIGASI ==========
+const navbar=document.getElementById('navbar'),mobileBtn=document.getElementById('mobile-btn'),mobileMenu=document.getElementById('mobile-menu');
+window.addEventListener('scroll',()=>{if(window.scrollY>30)navbar.classList.add('bg-sand-50/90','backdrop-blur-md','border-b','border-sand-200','shadow-sm');else navbar.classList.remove('bg-sand-50/90','backdrop-blur-md','border-b','border-sand-200','shadow-sm')});
+mobileBtn.addEventListener('click',()=>{mobileMenu.classList.toggle('hidden');const i=mobileBtn.querySelector('i');i.classList.toggle('fa-bars');i.classList.toggle('fa-times')});
+document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>{mobileMenu.classList.add('hidden');const i=mobileBtn.querySelector('i');i.classList.add('fa-bars');i.classList.remove('fa-times')}));
+const revealEls=document.querySelectorAll('.reveal'),obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});revealEls.forEach(el=>obs.observe(el));
+window.addEventListener('load',()=>setTimeout(()=>revealEls.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('visible')}),80));
+
+// ========== DATA KUIS ==========
+const quizData=[
+  // BAB 1: Hindu-Budha (4 soal)
+  {bab:'BAB 1',q:'Bukti tertua yang membuktikan keberadaan Kerajaan Kutai adalah...',opts:['Prasasti Kedukan Bukit','Prasasti Yupa','Prasasti Tugu','Naskah Negarakretagama'],ans:1,exp:'Tujuh buah Yupa (tumpukan batu korban) ditulis dalam bahasa Sanskerta dan aksara Pallawa di Muara Kaman, Kalimantan Timur, mencatat raja-raja Kutai mulai dari Kudungga hingga Mulawarman.'},
+  {bab:'BAB 1',q:'Candi Borobudur dibangun oleh dinasti yang bercorak...',opts:['Hindu Syiwa','Buddha Mahayana','Islam Sunni','Hindu Wisnu'],ans:1,exp:'Candi Borobudur dibangun oleh Dinasti Syailendra yang menganut aliran Buddha Mahayana pada abad ke-8 Masehi di Jawa Tengah.'},
+  {bab:'BAB 1',q:'Sumpah Palapa diucapkan oleh Mahapatih Gajah Mada dari kerajaan...',opts:['Sriwijaya','Mataram Kuno','Singhasari','Majapahit'],ans:3,exp:'Gajah Mada mengucapkan Sumpah Palapa pada tahun 1336 M saat menjabat sebagai Mahapatih Kerajaan Majapahit di bawah Ratu Tribhuwana Tunggadewi.'},
+  {bab:'BAB 1',q:'Naskah Nagarakretagama ditulis oleh...',opts:['Mpu Sindok','Mpu Prapanca','Mpu Tantular','Ken Arok'],ans:1,exp:'Nagarakretagama ditulis oleh Mpu Prapanca pada tahun 1365 M, memuat deskripsi wilayah kekuasaan Majapahit yang mencakup lebih dari 90 negara vassal.'},
+
+  // BAB 2: Islam (4 soal)
+  {bab:'BAB 2',q:'Kesultanan Islam pertama di Nusantara adalah...',opts:['Kesultanan Demak','Kesultanan Aceh','Kesultanan Samudera Pasai','Kesultanan Ternate'],ans:2,exp:'Kesultanan Samudera Pasai didirikan oleh Malik Al-Saleh sekitar tahun 1297 M di Aceh, menjadikannya kerajaan Islam pertama di Nusantara.'},
+  {bab:'BAB 2',q:'Islam masuk ke Nusantara terutama melalui...',opts:['Penaklukan militer','Jalur perdagangan dan dakwah','Perkawinan politik antar kerajaan','Misi penginjilan dari Eropa'],ans:1,exp:'Berbeda dengan wilayah lain, Islam di Nusantara disebarkan secara damai melalui pedagang Muslim yang menetap di pelabuhan pesisir, kemudian berdakwah melalui akhlak dan perkawinan campuran.'},
+  {bab:'BAB 2',q:'Wali yang dikenal menggunakan seni wayang dan gamelan untuk menyebarkan Islam adalah...',opts:['Sunan Ampel','Sunan Giri','Sunan Kalijaga','Sunan Bonang'],ans:2,exp:'Sunan Kalijaga menggunakan pendekatan kultural — wayang, gamelan, dan tradisi lokal Jawa — sebagai media dakwah agar ajaran Islam lebih mudah diterima masyarakat.'},
+  {bab:'BAB 2',q:'Sultan Iskandar Muda memimpin kesultanan yang dikenal sebagai...',opts:['Serambi Mekah','Pusat Rempah','Kota Pelabuhan','Negeri Khatulistiwa'],ans:0,exp:'Kesultanan Aceh di bawah Sultan Iskandar Muda (1607–1636) mencapai puncak kejayaan dan dikenal sebagai "Serambi Mekah" karena menjadi pusat pendidikan dan peradaban Islam di Asia Tenggara.'},
+
+  // BAB 3: Kolonial (4 soal)
+  {bab:'BAB 3',q:'VOC (Vereenigde Oostindische Compagnie) didirikan pada tahun...',opts:['1502','1552','1602','1652'],ans:2,exp:'VOC didirikan pada tahun 1602 oleh pemerintah Belanda. VOC memiliki hak monopoli perdagangan di Asia Timur dan berfungsi sebagai "negara dalam negara" dengan hak memiliki tentara sendiri.'},
+  {bab:'BAB 3',q:'Sistem Tanam Paksa (Cultuurstelsel) diperkenalkan oleh...',opts:['Jan Pieterszoon Coen','Johannes van den Bosch','Herman Willem Daendels','Thomas Stamford Raffles'],ans:1,exp:'Gubernur Jenderal Johannes van den Bosch memperkenalkan Tanam Paksa pada tahun 1830, mewajibkan setiap desa menyisihkan 1/5 tanahnya untuk komoditas ekspor Belanda.'},
+  {bab:'BAB 3',q:'Tiga program Politik Etis adalah irigasi, edukasi, dan...',opts:['Industrialisasi','Emigrasi (transmigrasi)','Militerisme','Perdagangan bebas'],ans:1,exp:'Politik Etis (1901) memiliki tiga program: irigasi (pengairan), edukatie (pendidikan), dan emigratie (transmigrasi) sebagai respons atas kritik terhadap sistem Tanam Paksa.'},
+  {bab:'BAB 3',q:'Sumpah Pemuda dikumandangkan pada tanggal...',opts:['20 Mei 1908','28 Oktober 1928','17 Agustus 1945','10 November 1945'],ans:1,exp:'Kongres Pemuda II pada 28 Oktober 1928 menghasilkan Sumpah Pemuda: "Satu Nusa, Satu Bangsa, Satu Bahasa — Indonesia", menjadi tonggak persatuan nasional.'},
+
+  // BAB 4: Kemerdekaan (3 soal)
+  {bab:'BAB 4',q:'Teks Proklamasi diketik oleh...',opts:['Mohammad Hatta','Soekarno','Sayuti Melik','Ahmad Soebardjo'],ans:2,exp:'Naskah Proklamasi ditulis oleh Soekarno pada dini hari 17 Agustus 1945, kemudian diketik oleh Sayuti Melik yang juga menambahkan kata "tanggal" dan "tahun" tanpa sepengetahuan Soekarno.'},
+  {bab:'BAB 4',q:'Tanggal 10 November diperingati sebagai Hari Pahlawan untuk mengenang...',opts:['Perang Diponegoro','Pertempuran Surabaya','Perang Aceh','Sumpah Pemuda'],ans:1,exp:'Pertempuran Surabaya berlangsung pada Oktober-November 1945. Rakyat Surabaya di bawah Bung Tomo berperang melawan pasukan Sekutu-NICA yang ingin kembali menjajah Indonesia.'},
+  {bab:'BAB 4',q:'Belanda mengakui kedaulatan Indonesia pada tanggal...',opts:['17 Agustus 1945','27 Desember 1949','10 November 1945','17 Agustus 1950'],ans:1,exp:'Belanda secara resmi mengakui kedaulatan Republik Indonesia Serikat (RIS) pada 27 Desember 1949 melalui Konferensi Meja Bundar di Den Haag. NKRI terbentuk pada 17 Agustus 1950.'}
+];
+
+// ========== STATE ==========
+let cur=0, score=0, answered=false;
+const babScores=[0,0,0,0]; // index 0=BAB1, 1=BAB2, 2=BAB3, 3=BAB4
+const babCounts=[4,4,4,3];
+
+// ========== ELEMEN ==========
+const qCur=document.getElementById('q-cur'),qTot=document.getElementById('q-tot');
+const qScoreEl=document.getElementById('q-score'),qBar=document.getElementById('q-bar');
+const qBab=document.getElementById('q-bab'),qText=document.getElementById('q-text');
+const qOpts=document.getElementById('q-opts'),qFeedback=document.getElementById('q-feedback');
+const qNext=document.getElementById('q-next'),qCard=document.getElementById('q-card');
+const qResult=document.getElementById('q-result'),qArea=document.getElementById('quiz-area');
+
+qTot.textContent=quizData.length;
+
+// ========== FUNGSI ==========
+function getBabIndex(bab){return parseInt(bab.replace('BAB ',''))-1}
+
+function loadQ(){
+  answered=false;
+  const d=quizData[cur];
+  qCur.textContent=cur+1;
+  qScoreEl.textContent=score;
+  qBar.style.width=((cur+1)/quizData.length*100)+'%';
+  qBab.textContent=d.bab;
+  qText.textContent=d.q;
+  qFeedback.classList.add('hidden');
+  qNext.classList.add('hidden');
+
+  qOpts.innerHTML='';
+  d.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='quiz-option w-full text-left px-4 py-3.5 rounded-xl bg-sand-50 text-earth-700 text-sm font-medium flex items-center gap-3';
+    btn.innerHTML=`<span class="opt-label w-7 h-7 rounded-full border border-sand-300 flex items-center justify-center text-xs font-bold text-earth-500 shrink-0 transition-all duration-300">${String.fromCharCode(65+i)}</span><span>${opt}</span>`;
+    btn.addEventListener('click',()=>pick(i,btn));
+    qOpts.appendChild(btn);
+  });
+}
+
+function pick(idx,btn){
+  if(answered)return;
+  answered=true;
+  const d=quizData[cur];
+  const all=qOpts.querySelectorAll('.quiz-option');
+  all.forEach(b=>b.classList.add('answered'));
+
+  if(idx===d.ans){
+    btn.classList.add('correct');
+    score++;
+    babScores[getBabIndex(d.bab)]++;
+    qScoreEl.textContent=score;
+    qFeedback.className='mt-5 p-4 rounded-xl text-sm leading-relaxed bg-olive/5 border border-olive/20 text-earth-700';
+    qFeedback.innerHTML=`<i class="fas fa-check-circle text-olive mr-2"></i><strong class="text-olive">Benar!</strong> ${d.exp}`;
+  }else{
+    btn.classList.add('wrong');
+    all[d.ans].classList.add('correct');
+    qFeedback.className='mt-5 p-4 rounded-xl text-sm leading-relaxed bg-rust/5 border border-rust/15 text-earth-700';
+    qFeedback.innerHTML=`<i class="fas fa-times-circle text-rust mr-2"></i><strong class="text-rust">Kurang tepat.</strong> ${d.exp}`;
+  }
+  qFeedback.classList.remove('hidden');
+
+  if(cur<quizData.length-1){
+    qNext.innerHTML='Pertanyaan Berikutnya <i class="fas fa-arrow-right ml-1 text-xs"></i>';
+  }else{
+    qNext.innerHTML='Lihat Hasil <i class="fas fa-trophy ml-1 text-xs"></i>';
+  }
+  qNext.classList.remove('hidden');
+}
+
+qNext.addEventListener('click',()=>{
+  if(cur<quizData.length-1){cur++;loadQ();qCard.scrollIntoView({behavior:'smooth',block:'center'})}
+  else showResult();
+});
+
+function showResult(){
+  qCard.classList.add('hidden');
+  qResult.classList.remove('hidden');
+  qResult.querySelector('.bg-white').classList.add('pop-in');
+
+  const pct=Math.round(score/quizData.length*100);
+  document.getElementById('result-score').textContent=score+'/'+quizData.length;
+  document.getElementById('result-pct').textContent=pct+'% benar';
+
+  document.getElementById('r-b1').textContent=babScores[0]+'/'+babCounts[0];
+  document.getElementById('r-b2').textContent=babScores[1]+'/'+babCounts[1];
+  document.getElementById('r-b3').textContent=babScores[2]+'/'+babCounts[2];
+  document.getElementById('r-b4').textContent=babScores[3]+'/'+babCounts[3];
+
+  const msgEl=document.getElementById('result-msg');
+  const iconEl=document.getElementById('result-icon');
+  if(pct===100){msgEl.textContent='Sempurna! Kamu benar-benar menguasai seluruh materi sejarah Indonesia. Luar biasa!';iconEl.className='fas fa-crown text-rust text-3xl';launchConfetti()}
+  else if(pct>=80){msgEl.textContent='Hebat! Pemahaman sejarahmu sangat baik. Hanya perlu sedikit lagi untuk sempurna!';iconEl.className='fas fa-trophy text-rust text-3xl';launchConfetti()}
+  else if(pct>=60){msgEl.textContent='Cukup baik! Sebagian besar materi sudah dipahami. Coba pelajari kembali bab yang masih kurang.';iconEl.className='fas fa-medal text-sand-400 text-3xl'}
+  else{msgEl.textContent='Jangan menyerah! Baca kembali materi di setiap bab, lalu ulangi evaluasi ini. Semangat!';iconEl.className='fas fa-book-reader text-earth-400 text-3xl'}
+
+  showToast(pct>=80?'Selamat, hasilnya bagus!':'Coba lagi untuk skor lebih tinggi!',pct>=80?'fa-trophy':'fa-book-reader',pct>=80?'#b85c38':'#8b6b4a');
+  qResult.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+document.getElementById('btn-restart').addEventListener('click',()=>{
+  cur=0;score=0;babScores[0]=0;babScores[1]=0;babScores[2]=0;babScores[3]=0;
+  qCard.classList.remove('hidden');
+  qResult.classList.add('hidden');
+  loadQ();
+  qCard.scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+// ========== CONFETTI ==========
+function launchConfetti(){
+  const colors=['#b85c38','#d4774e','#c09868','#5a6e3c','#7a9452','#2a1f15'];
+  for(let i=0;i<50;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.left=Math.random()*100+'vw';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDelay=(Math.random()*1.5)+'s';
+    el.style.animationDuration=(2+Math.random()*2)+'s';
+    el.style.width=(5+Math.random()*6)+'px';
+    el.style.height=(5+Math.random()*6)+'px';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),5000);
+  }
+}
+
+// ========== TOAST ==========
+function showToast(t,ic,c){
+  const toast=document.getElementById('toast');
+  document.getElementById('toast-text').textContent=t;
+  const i=document.getElementById('toast-icon');i.className=`fas ${ic||'fa-check-circle'}`;i.style.color=c||'#7a9452';
+  toast.classList.remove('hidden');toast.style.opacity='0';toast.style.transform='translateY(12px)';
+  requestAnimationFrame(()=>{toast.style.opacity='1';toast.style.transform='translateY(0)'});
+  setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateY(12px)';setTimeout(()=>toast.classList.add('hidden'),300)},3000);
+}
+
+// ========== INIT ==========
+loadQ();
+</script>
+</body>
+</html>
